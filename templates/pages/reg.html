@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration - Knowly</title>
+    <link rel="stylesheet" href="{% static 'css/reg.css' %}">
+    <style>
+        body {
+            background-image: url("{% static 'image/background.jpg' %}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            margin: 0;
+            height: 100vh;
+        } 
+        </style>
+</head>
+<body>
+    <h1 class="heading">Knowly</h1>
+    <hr>
+    <div class="main">
+        <div class="left-text">
+            <p class="typing-text">
+                <br>
+                Learn at your own pace! 🚀
+            </p>
+        </div>
+        <div class="form-container">
+            <form method = "post" id="menu" >
+                {% csrf_token %}
+                <p id="errors" style="color: red;"></p>
+                <h3 style="font-size: larger;">SIGNUP</h3>
+                <label>First name:</label>
+                {{form.first_name}}<br>
+
+                <label>last name:</label>
+                {{form.last_name}}<br>
+
+                <label>Email address:</label>
+                {{form.email}}<br>
+
+                <label>Username:</label>
+                {{form.username}}<br>
+
+                <label>Password:</label>
+                {{form.password1}}<br>
+
+                <label>Confirm Password:</label>
+                {{form.password2}}<br>
+
+                
+
+                                {% if form.errors %}     <!-- Display errors if any -->  
+                                <ul style="color: red;">
+                                    {% for field in form %}
+                                {% for error in field.errors %}
+                                    <li>{{ field.label }}: {{ error }}</li>
+                                {% endfor %}
+                                {% endfor %}
+                                    </ul>
+                                {% endif %}
+
+
+                <button type="submit">Submit</button> 
+            </form>
+        </div>
+    </div>
+    <script src="{% static 'image/reg.js' %}">
+      
+    </script>
+</body>
+</html>

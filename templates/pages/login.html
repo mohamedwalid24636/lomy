@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Knowly - Login</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <style>
+        body {
+        background-image: url("{% static 'image/background.jpg' %}");
+            /* Replace with your image path */
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center;
+          margin: 0; /* Optional: Remove default margin for full-page coverage */
+          height: 100vh; /* Ensure the body takes up the full viewport height */
+        }
+      </style>
+</head>
+<body>
+    <h1 c class="heading">Knowly</h1>
+    <div class="main">
+       
+        <h1 class="welcome"style="font-family: Verdana; text-align: center; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">Welcome to Knowly!!</h1>
+        <h2 style="text-align:center; font-weight: bold;">Your learning journey starts here</h2>
+        <br><br>
+        <div style="text-align:center;" class="login-form">
+           <h3><b >Login</b></h3> 
+            <form method ="post" id="form" >
+                {% csrf_token %}
+                <label for="uname">Username:</label><br>
+                <input type="text" id="uname" name="uname" required><br><br>
+                <label for="pass">Password:</label><br>
+                <input type="password" id="pass" name="pass" required><br><br>
+                <button type="submit">Login</button>
+                <br><br>
+                <b>Do not have an account ?</b>
+                <br>
+                {{error}} 
+                <br>
+                <a href="{% url 'reg' %}"> Register here </a>
+            </form>
+        </div>
+    </div>
+    <script src="{% static 'image/reg.js' %}"></script>
+</body>
+</html>

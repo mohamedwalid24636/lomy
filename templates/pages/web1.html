@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{% static 'css/web1.css' %}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+          <h1 class="logo">knowly</h1>
+          <ul class="nav-links">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'home' %}">Courses</a></li>
+            <li><a href="{% url 'contact' %}">Contact Us</a></li>
+          </ul>
+          <div class="profile">
+            <a href="{% url 'profile' %}">
+              <img src="{% static 'image/profile.jpg' %}" alt="Profile" class="profile-img">
+            </a>
+          </div>
+        </div>
+    </nav>
+
+    </nav>
+
+    <div class="video-container">
+        <video controls >
+            <source src="{% static 'video/web1.mp4' %}" type="video/mp4" >
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <div class="content-wrapper">
+        <div class="main-content">
+            <h2>Master HTML & CSS – Build Stunning Websites from Scratch!</h2>
+            <p>
+                Are you ready to dive into the world of web development? Our <strong>HTML & CSS Course</strong> is designed for beginners and aspiring developers who want to create beautiful, responsive, and interactive websites from the ground up.
+            </p>
+
+            <h2>What You'll Learn:</h2>
+            <ul>
+                <li><strong>HTML Basics:</strong> Structure web pages with headings, paragraphs, images, and links.</li>
+                <li><strong>CSS Styling:</strong> Add colors, fonts, layouts, and animations to bring your site to life.</li>
+                <li><strong>Responsive Design:</strong> Make your websites mobile-friendly with modern techniques.</li>
+                <li><strong>Real-World Projects:</strong> Build complete web pages and mini-projects to boost your skills.</li>
+            </ul>
+
+            <h2>Why Join This Course?</h2>
+            <ul>
+                <li><strong>Beginner-Friendly:</strong> No prior experience needed!</li>
+                <li><strong>Hands-On Learning:</strong> Practice with interactive coding challenges.</li>
+                <li><strong>Design & Aesthetics:</strong> Learn how to make websites that look and feel great.</li>
+                <li><strong>Certificate of Completion:</strong> Showcase your skills to potential employers.</li>
+            </ul>
+
+            <p>By the end of this course, you'll be confident in building <strong>fully functional websites</strong> using <strong>HTML & CSS</strong>, setting the foundation for a career in web development.</p>
+
+            <button>REGISTER NOW!</button>
+            <button><a href="https://www.youtube.com/watch?v=TKYsuU86-DQ&list=PL0eyrZgxdwhwNC5ppZo_dYGVjerQY3xYU" target="_blank">For More</a></button>
+        </div>
+
+        <div class="instructor-section">
+            <div class="instructor-profile">
+                <img src="{% static 'image/download.jfif' %}" alt="Instructor" class="instructor-pic">
+                <div class="instructor-name">Dr. Ahmed Ali</div>
+                <div class="instructor-title">Web Development Expert</div>
+                <div class="instructor-bio">
+                    With over 15 years of experience in Web Development, Dr. Ahmed has worked with Fortune 100 companies and government agencies to build innovative solutions. He holds multiple certifications and specializes in web technologies and modern UI/UX design.
+                </div>
+            </div>
+
+            <div class="instructor-stats">
+                <div class="stat-item">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">4.5</div>
+                    <div class="stat-label">Rating</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">3,000+</div>
+                    <div class="stat-label">Students</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'home' %}">Courses</a></li>
+                    <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/?locale=ar_AR"><img src="{% static 'image/facebook.jfif' %}"></a>
+                    <a href="https://www.X.com/"><img src="{% static 'image/xx.png' %}"></a>
+                    <a href="https://www.instagram.com/"><img src="{% static 'image/instagram.jfif' %}"></a>
+                    <a href="https://www.linkedin.com/"><img src="{% static 'image/linkedin.png' %}"></a>
+                </div>
+            </div>
+        </div>
+        <p class="copyright">All Rights Reserved &copy; 2025</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,102 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{% static 'css/web1.css' %}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+          <h1 class="logo">knowly</h1>
+          <ul class="nav-links">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'home' %}">Courses</a></li>
+            <li><a href="{% url 'contact' %}">Contact Us</a></li>
+          </ul>
+          <div class="profile">
+            <a href="{% url 'profile' %}">
+              <img src="{% static 'image/profile.jpg' %}" alt="Profile" class="profile-img">
+            </a>
+          </div>
+        </div>
+    </nav>
+
+
+    
+    <div class="video-container">
+        <video width="100%" controls>
+            <source src="{% static 'video/java.mp4' %}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    
+    <div class="content-wrapper">
+        <div class="main-content">
+            <div class="course-description">
+                <h2>Become a JavaScript Developer – From Zero to Hero</h2>
+        
+                <p class="describe">
+                    JavaScript is the language that brings websites to life. In this course, you'll learn how to build powerful and interactive web applications from scratch using modern JavaScript. Whether you're a beginner or refreshing your skills, this course will guide you step-by-step.
+                    <br><br>
+                    We’ll cover everything from basic programming concepts like variables and functions, to DOM manipulation, event handling, and real-world problem solving. You'll also explore advanced topics like asynchronous JavaScript, APIs, and how JavaScript fits into full-stack development.
+                    <br><br>
+                    By the end of the course, you'll have the confidence to create dynamic websites, build real projects, and take your first step towards becoming a professional web developer.
+                </p>
+        
+                <button>REGISTER NOW!</button>
+                <button><a href="https://www.youtube.com/watch?v=W6NZfCO5SIk" target="_blank">Learn More</a></button>
+            </div>
+        </div>
+        
+        <div class="instructor-section">
+            <div class="instructor-profile">
+                <img src="{% static 'image/download.jfif' %}" alt="Instructor" class="instructor-pic">
+                <div class="instructor-name">Dr.Ahmed ali</div>
+                <div class="instructor-title">Web Development Expert</div>
+                <div class="instructor-bio">
+                    With over 15 years of experience in Web Development, Dr.ahmed has worked with Fortune 100 companies and government agencies to secure critical infrastructure. He holds multiple certifications and specializes in web development.
+                </div>
+            </div>
+            
+            <div class="instructor-stats">
+                <div class="stat-item">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">4.5</div>
+                    <div class="stat-label">Rating</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">3,000+</div>
+                    <div class="stat-label">Students</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'home' %}">Courses</a></li>
+                    <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/?locale=ar_AR"><img src="{% static 'image/facebook.jfif' %}"></a>
+                    <a href="https://www.X.com/"><img src="{% static 'image/xx.png' %}"></a>
+                    <a href="https://www.instagram.com/"><img src="{% static 'image/instagram.jfif' %}"></a>
+                    <a href="https://www.linkedin.com/"><img src="{% static 'image/linkedin.png' %}"></a>
+                </div>
+            </div>
+        </div>
+        <p class="copyright">All Rights Reserved &copy; 2025</p>
+    </footer>
+</body>
+</html>

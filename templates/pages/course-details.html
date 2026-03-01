@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{% static 'css/web1.css' %}">
+</head>
+<body>
+
+
+
+    <nav class="navbar">
+        <div class="container">
+          <h1 class="logo">knowly</h1>
+          <ul class="nav-links">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'home' %}">Courses</a></li>
+            <li><a href="{% url 'contact' %}">Contact Us</a></li>
+          </ul>
+          <div class="profile">
+            <a href="{% url 'profile' %}">
+              <img src="{% static 'image/profile.jpg' %}" alt="Profile" class="profile-img">
+            </a>
+          </div>
+        </div>
+    </nav>
+
+    
+
+
+
+
+
+    
+  
+    {% for content in contents %}
+
+    
+    <div class="video-container">
+        <video width="100%" controls>
+            <source src="{{content.video_file.url}}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    
+    <div class="content-wrapper">
+        <div class="main-content">
+            <h2>{{content.title}}</h2>
+            <p class="describe">
+                {{content.details}}<br>
+                <!-- <strong>Course Duration:</strong> {{contents.duration}}<br>
+                <strong>Course Price:</strong> {{contents.price}}<br>
+                <strong>Course Level:</strong> {{contents.level}}<br>
+                <strong>Course Language:</strong> {{contents.language}}<br> -->
+            </p>
+
+            <button><a href="{% url 'contact' %}">contact us!</button>
+            <button><a href="https://youtube.com/playlist?list=PLtr9ezc61PUbA2l3MiE4YbrgITJN84N-C&si=V2aQ_sEtCB1k2-8_">For More</a></button>
+        </div>
+        {% endfor %}
+
+        {% for instructor in instructors %}
+
+        <div class="instructor-section">
+            <div class="instructor-profile">
+                <img src="{{instructor.Instructor_image.url}}" alt="Instructor" class="instructor-pic">
+                <div class="instructor-name">{{instrutors.name}}</div>
+                <!-- <div class="instructor-title">Cybersecurity Expert | CISSP, CEH</div> -->
+                <div class="instructor-bio">
+                    {{instructor.bio}}<br>
+                </div>
+            </div>
+            
+
+            
+            <div class="instructor-stats">
+                <div class="stat-item">
+                    <div class="stat-number">{{instructor.experience}}</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">{{instructor.rating}}</div>
+                    <div class="stat-label">Rating</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">{{instructor.num_studenta}}</div>
+                    <div class="stat-label">Students</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+
+
+
+
+
+
+                {% endfor %}
+
+
+
+
+
+
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'home' %}">Courses</a></li>
+                    <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/?locale=ar_AR"><img src="{% static 'image/facebook.jfif' %}"></a>
+                    <a href="https://www.X.com/"><img src="{% static 'image/xx.png' %}"></a>
+                    <a href="https://www.instagram.com/"><img src="{% static 'image/instagram.jfif' %}"></a>
+                    <a href="https://www.linkedin.com/"><img src="{% static 'image/linkedin.png' %}"></a>
+                </div>
+            </div>
+        </div>
+        <p class="copyright">All Rights Reserved &copy; 2025</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,134 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ course.title }} | Knowly</title>
+  <link rel="stylesheet" href="{% static 'css/web1.css' %}">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <h1 class="logo">knowly</h1>
+      <ul class="nav-links">
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'home' %}">Courses</a></li>
+        <li><a href="{% url 'contact' %}">Contact Us</a></li>
+      </ul>
+      <div class="profile">
+        <a href="{% url 'profile' %}">
+          <img src="{% static 'image/profile.jpg' %}" alt="Profile" class="profile-img">
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Course Banner -->
+  <div class="video-container">
+    <img src="{{ course.image.url }}" alt="{{ course.title }}" class="banner-img">
+  </div>
+
+  <!-- Main Content -->
+  <div class="content-wrapper">
+    <div class="main-content">
+      <h2>{{ course.title }}</h2>
+      <p class="describe">{{ course.description }}</p>
+
+      <div class="instructor-info">
+        <p><strong>Instructor:</strong> {{ course.instructor.user.get_full_name }}</p>
+        <p><strong>Price:</strong> {% if course.is_free %}Free{% else %}${{ course.price }}{% endif %}</p>
+      </div>
+
+      <h3>Course Contents</h3>
+      <ul class="contents">
+        {% for content in contents %}
+          <li>
+            <h4>{{ content.title }}</h4>
+            {% if content.video_url %}
+              <a href="{{ content.video_url }}" target="_blank">Watch Video</a>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+
+      {% if user.is_authenticated %}
+        {% if enrolled %}
+          <p class="enrolled-msg">You're already enrolled in this course.</p>
+        {% else %}
+          <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="enroll-btn">
+              {% if course.is_free %}Enroll Now{% else %}Buy Course (${{ course.price }}){% endif %}
+            </button>
+          </form>
+        {% endif %}
+      {% else %}
+        <p><a href="{% url 'login' %}?next={% url 'course_details' course.id %}">Login to enroll</a></p>
+      {% endif %}
+
+      <div style="margin-top: 20px;">
+        <button class="btn">REGISTER NOW!</button>
+        <button class="btn">
+          <a href="https://youtube.com/playlist?list=PL_yseowcuqYJc7wXtGIsshYp1B_W0M-ZK" target="_blank">For More</a>
+        </button>
+      </div>
+    </div>
+
+    <!-- Instructor Section -->
+    <div class="instructor-section">
+      <div class="instructor-profile">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Instructor" class="instructor-pic">
+        <div class="instructor-name">{{ course.instructor.user.get_full_name }}</div>
+        <div class="instructor-title">Cybersecurity Expert</div>
+        <div class="instructor-bio">
+          {{ course.instructor.bio }}
+        </div>
+      </div>
+    
+      <div class="instructor-stats">
+        <div class="stat-item">
+          <div class="stat-number">{{ course.instructor.courses.count }}+</div>
+          <div class="stat-label">Courses</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">{{ course.instructor.rating }}</div>
+          <div class="stat-label">Rating</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">{{ course.instructor.user.studentprofile_set.count }}+</div>
+          <div class="stat-label">Students</div>
+        </div>
+      </div>
+    </div>
+  </div>    
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'home' %}">Courses</a></li>
+          <li><a href="{% url 'contact' %}">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Follow Us</h3>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/?locale=ar_AR"><img src="{% static 'image/facebook.jfif' %}"></a>
+          <a href="https://www.X.com/"><img src="{% static 'image/xx.png' %}"></a>
+          <a href="https://www.instagram.com/"><img src="{% static 'image/instagram.jfif' %}"></a>
+          <a href="https://www.linkedin.com/"><img src="{% static 'image/linkedin.png' %}"></a>
+        </div>
+      </div>
+    </div>
+    <p class="copyright">All Rights Reserved &copy; 2025</p>
+  </footer>
+
+</body>
+</html>

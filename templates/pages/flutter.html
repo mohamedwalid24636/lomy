@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{% static 'css/web1.css' %}">
+    <style>
+        .instructor-bio {
+            font-size: 20px;
+            line-height: 2.2;
+            font-weight: bold;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content-wrapper">
+            <div class="video-container">
+                {% if contents and contents.0.video_file %}
+                    <video controls>
+                        <source src="{{ contents.0.video_file.url }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                {% elif contents and contents.0.video_url %}
+                    <iframe width="100%" height="450" src="{{ contents.0.video_url }}" frameborder="0" allowfullscreen></iframe>
+                {% else %}
+                    <div class="video-placeholder">No video available.</div>
+                {% endif %}
+            </div>
+    
+            <div class="main-content">
+                <h1>{{ course.title }}</h1>
+                <p>{{ course.description }}</p>
+                <ul>
+                    {% for content in contents %}
+                    <li>{{ content.title }} - {{ content.duration }}</li>
+                    {% endfor %}
+                </ul>
+                <a href="#" class="register-btn">Enroll Now</a>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'home' %}">Courses</a></li>
+                    <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/?locale=ar_AR"><img src="{% static 'image/facebook.jfif' %}"></a>
+                    <a href="https://www.X.com/"><img src="{% static 'image/xx.png' %}"></a>
+                    <a href="https://www.instagram.com/"><img src="{% static 'image/instagram.jfif' %}"></a>
+                    <a href="https://www.linkedin.com/"><img src="{% static 'image/linkedin.png' %}"></a>
+                </div>
+            </div>
+        </div>
+        <p class="copyright">All Rights Reserved &copy; 2025</p>
+    </footer>
+</body>
+</html>

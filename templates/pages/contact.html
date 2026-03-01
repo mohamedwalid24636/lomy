@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="{% static 'css/contact.css' %}">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <h1 class="logo">knowly</h1>
+            <ul class="nav-links">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'home' %}">Courses</a></li>
+                <li><a href="{% url 'contact' %}" class="active">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <p>If you have any questions, feel free to reach out!</p>
+
+            <div class="contact-container">
+                <!-- Contact Form -->
+                <div class="contact-form">
+                    <h3>Send Us a Message</h3>
+                    <form method ="POST" action="{% url 'contact' %}">
+                        {% csrf_token %}
+                        {{ form.name }}
+                        {{ form.email }}
+                        {{ form.message }}
+                        <button type="submit">Send Message</button>
+                    </form>
+                </div>
+
+                <!-- Contact Details -->
+                <div class="contact-info">
+                    <h3>Get in Touch</h3>
+                    <p><strong>Email:</strong> support@knowly.com</p>
+                    <p><strong>Phone:</strong> +20 123 456 789</p>
+                    <p><strong>Address:</strong> MUST university, Cairo, Egypt</p>
+                    
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#"><img src="{% static 'image/facebook.jfif' %}" alt="Facebook"></a>
+                        <a href="#"><img src="{% static 'image/xx.png' %}" alt="X"></a>
+                        <a href="#"><img src="{% static 'image/instagram.jfif' %}" alt="Instagram"></a>
+                        <a href="#"><img src="{% static 'image/linkedin.png' %}" alt="LinkedIn"></a>
+                    </div>
+
+                    <div class="alert-container">
+                                        
+                                                            {% if messages %}
+                                            {% for message in messages %}
+                                                <div class="alert alert-{{ message.tags }}">
+                                                    <h3>Messages:</h3> {{ message }}
+                                                </div>
+                                            {% endfor %}
+                                            {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <p>All Rights Reserved &copy; 2025</p>
+    </footer>
+
+</body>
+</html>

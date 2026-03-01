@@ -1,0 +1,266 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Courses Homepage</title>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link rel="stylesheet" href= "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
+</head>
+<body> 
+  
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="container">
+      <h1 class="logo">knowly</h1>
+      <ul class="nav-links">
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'home' %}">Courses</a></li>
+        <li><a href="{% url 'contact' %}">Contact Us</a></li>
+      </ul>
+      
+
+      <div style="display: flex; gap: 10px; align-items: center;">
+        {% if user.is_authenticated %}
+            <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" style="background: none; border: none; color: inherit; cursor: pointer;">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </form>
+        {% else %}
+            <a href="{% url 'login' %}" style="text-decoration: none; color: inherit;">
+                <i class="fas fa-sign-in-alt"></i> Login
+            </a>
+        {% endif %}
+    </div>
+
+{% if request.user.is_authenticated %}     
+      <div class="profile">
+        <a href="{% url 'profile' %}" class="profile-link">Profile</a>
+      </div>
+
+
+{% endif %}
+
+    </div>
+  </nav>
+
+  
+  <!-- first Section -->
+  <header class="hero">
+    <h2>Welcome to the Courses Website</h2>
+    <p>The best educational courses in various fields</p>
+  </header>
+
+  <!-- Filter -->
+  <!-- <div class="filter">
+    <select id="courseFilter">
+      <option value="all">All Courses</option>
+      <option value="web">Web Development</option>
+      <option value="mobile">Mobile Development</option>
+      <option value="cyber">Cyber Security</option>
+    </select>
+  </div> -->
+
+  
+  <!-- Courses -->
+  <!-- <section id="courses" class="courses">
+    <table class="course-table">
+        <tr>
+            <td>
+                <div class="course" data-category="web">
+                    <a href="{% url 'web1' %}">
+                        <img src="{% static 'image/html-css.png' %}"  class="course-img">
+                        <h3>HTML & CSS Course</h3>
+                        <p>Basics of Web Development</p>
+                        <span>ahmed Ali</span>
+                    </a>
+                </div>
+            </td>
+            <td>
+                <div class="course" data-category="web">
+                    <a href="{% url 'java' %}" >
+                        <img src="{% static 'image/javascript.jfif' %}" class="course-img">
+                        <h3>JavaScript Course</h3>
+                        <p>Website Programming</p>
+                        <span>ahmed ali</span>
+                    </a>
+                </div>
+            </td>
+            <td>
+                <div class="course" data-category="Mobile">
+                    <a href="{% url 'flutter' %}">
+                        <img src="{% static 'image/flutterr.png' %}" class="course-img">
+                        <h3>Flutter Course</h3>
+                        <p>Mobile App Development</p>
+                        <span>philip dackner</span>
+                    </a>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="course" data-category="cyber">
+                    <a href="{% url 'cyber1' %}">
+                        <img src="{% static 'image/cyber.webp' %}" class="course-img">
+                        <h3>cyber security I</h3>
+                        <p>security</p>
+                        <span>Dr. Alex Johnson</span>
+                    </a>
+                </div>
+            </td>
+            <td>
+                <div class="course" data-category="Mobile">
+                    <a href="{% url 'android' %}">
+                        <img src="{% static 'image/anroid.jfif' %}"  class="course-img">
+                        <h3>Android Development</h3>
+                        <p>Mobile App Development</p>
+                        <span>philip dackner</span>
+                    </a>
+                </div>
+            </td>
+            <td>
+                <div class="course" data-category="cyber">
+                    <a href="{% url 'cyber2' %}">
+                        <img src="{% static 'image/cyber2.jfif' %}"  class="course-img">
+                        <h3>cyber security II</h3>
+                        <p>basics of security</p>
+                        <span>Dr. Alex Johnson</span>
+                    </a>
+                </div>
+            </td>
+        </tr>
+    </table>
+</section> -->
+
+
+
+
+<!-- filteration  -->
+ 
+<div class="container">
+  <h1 style="text-align: center;">Courses</h1>
+
+  <hr>
+  <form method="get" class="filter">
+    <select name="category" id="courseFilter">
+      <option value="">All Courses</option>
+      {% for cat in categories %}
+        <option value="{{ cat.category__id }}"
+          {% if selected_category == cat.category__id|stringformat:"s" %}selected{% endif %}>
+          {{ cat.category__name }}
+        </option>
+      {% endfor %}
+    </select>
+    <!-- <button type="submit">Filter</button> -->
+  </form>
+
+
+
+
+  <!-- Courses Grid -->
+  <!-- Courses Grid -->
+{% if courses %}
+<section id="courses" class="courses">
+  <table class="course-table">
+    {% for course in courses %}
+        {% if forloop.counter0|divisibleby:3 %}<tr>{% endif %}
+        <td>
+          <div class="course" data-category="{{ course.category.name|lower }}">
+            <a href="{% url 'course_details' course.id %}"> 
+              {% if course.image %}
+                  <img src="{{ course.image.url }}" alt="{{ course.title }}" class="course-img">
+              {% endif %}
+              <h3>{{ course.title }}</h3>
+              <p>{{ course.description|truncatechars:50 }}</p>
+              
+              <span>
+                {% if course.is_free %}
+                    Free
+                {% else %}
+                    ${{ course.price }}
+                {% endif %}
+              </span>
+            </a>
+          </div>
+        </td>
+        {% if forloop.counter|divisibleby:3 or forloop.last %}</tr>{% endif %}
+    {% endfor %}
+  </table>
+</section>
+{% else %}
+  <p class="no-courses">No courses found in this category.</p>
+{% endif %}
+
+
+
+
+
+
+
+
+
+
+  <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'home' %}">Courses</a></li>
+                    <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/?locale=ar_AR"><img src="{% static 'image/facebook.jfif' %}"></a>
+                    <a href="https://www.X.com/"><img src="{% static 'image/xx.png' %}"></a>
+                    <a href="https://www.instagram.com/"><img src="{% static 'image/instagram.jfif' %}"></a>
+                    <a href="https://www.linkedin.com/"><img src="{% static 'image/linkedin.png' %}"></a>
+                </div>
+            </div>
+        </div>
+        <p class="copyright">All Rights Reserved &copy; 2025</p>
+    </footer>
+
+
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    let filterSelect = document.getElementById("courseFilter");
+    let courses = document.querySelectorAll(".course");
+
+    filterSelect.addEventListener("change", function () {
+      let selectedValue = filterSelect.value.toLowerCase().trim();
+
+      courses.forEach(course => {
+        let category = course.getAttribute("data-category").toLowerCase(); 
+        let parentTd = course.closest("td"); 
+        
+        if (selectedValue === "all" || category === selectedValue) {
+          parentTd.style.display = "table-cell"; 
+        } else {
+          parentTd.style.display = "none"; 
+        }
+      });
+    });
+  });
+</script>
+
+<!-- Optional: If you want to submit the form when the filter changes -->
+<script>      
+  document.getElementById('courseFilter').addEventListener('change', function () {
+    this.form.submit();
+  });
+</script>
+
+
+</body>
+</html> 

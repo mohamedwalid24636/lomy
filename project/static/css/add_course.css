@@ -1,0 +1,131 @@
+/* Page background and base styles */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to bottom right, #0f172a, #1e3a8a); /* Black to Blue gradient */
+    margin: 0;
+    padding: 0;
+    color: #1e293b;
+}
+
+/* Centered white form card */
+.container {
+    max-width: 480px; /* Reduced width */
+    margin: 60px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Reduced heading size */
+h2 {
+    text-align: center;
+    color: #1e3a8a;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+/* Smaller inputs and tighter spacing */
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+    padding: 10px;
+    font-size: 15px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* Button spacing adjusted */
+button {
+    padding: 12px;
+    font-size: 15px;
+    margin-top: 15px;
+}
+
+
+/* Heading */
+h2 {
+    text-align: center;
+    color: #1e3a8a; /* Deep blue */
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+
+/* Form structure */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Labels */
+label {
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #0f172a;
+}
+
+/* Inputs, selects, textarea */
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+    background-color: #f1f5f9;
+    color: #0f172a;
+    border: 1px solid #cbd5e1;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #3b82f6;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+}
+
+/* Checkbox styling */
+.form-check {
+    display: flex;
+    align-items: center;
+    margin-top: 12px;
+}
+
+.form-check input[type="checkbox"] {
+    transform: scale(1.2);
+    margin-right: 10px;
+}
+
+.form-check label {
+    margin: 0;
+    color: #0f172a;
+}
+
+/* Group spacing */
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* Button styling */
+button {
+    background-color: #3b82f6;
+    color: white;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #2563eb;
+    transform: translateY(-2px);
+}

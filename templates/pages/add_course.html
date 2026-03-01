@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Course</title>
+    <link rel="stylesheet" href="{% static 'css/add_course.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h2>Add New Course</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.title.label_tag }}
+                {{ form.title }}
+            </div>
+
+            <div class="form-group">
+                {{ form.description.label_tag }}
+                {{ form.description }}
+            </div>
+
+            <div class="form-group">
+                {{ form.category.label_tag }}
+                {{ form.category }}
+            </div>
+
+            <div class="form-group">
+                {{ form.price.label_tag }}
+                {{ form.price }}
+            </div>
+
+            <div class="form-group form-check">
+                {{ form.is_free }}
+                {{ form.is_free.label_tag }}
+            </div>
+
+            <div class="form-group">
+                {{ form.level.label_tag }}
+                {{ form.level }}
+            </div>
+
+            <div class="form-group">
+                {{ form.image.label_tag }}
+                {{ form.image }}
+            </div>
+
+            <button type="submit">Add Course</button>
+        </form>
+    </div>
+</body>
+</html>
